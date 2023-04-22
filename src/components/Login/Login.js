@@ -3,6 +3,7 @@ import React, { useEffect, useState, useReducer } from "react";
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
 import Button from "../UI/Button/Button";
+import AuthContext from "../context/auth-context";
 
 const reducerEmail = (state, action) => {
   if (action.type === "USER_INPUT") {
@@ -24,7 +25,7 @@ const reducerPassword = (state, action) => {
   return { value: "", isValid: false };
 }
 
-const Login = (props) => {
+const Login = () => {
   // const [enteredEmail, setEnteredEmail] = useState("");
   // const [emailIsValid, setEmailIsValid] = useState();
   // const [enteredPassword, setEnteredPassword] = useState("");
@@ -33,6 +34,8 @@ const Login = (props) => {
 
   const [emailState, dispatchEmail] = useReducer(reducerEmail, {value: '', isValid: true});
   const [passwordState, dispatchPassword] = useReducer(reducerPassword, {value: '', isValid: true});
+
+  const ctx = React.useContext(AuthContext);
 
   // just for creating aliases while destructuring
   const {isValid: emailIsValid} = emailState;
@@ -69,7 +72,7 @@ const Login = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(emailState, passwordState);
+    ctx.onLogin(emailState, passwordState);
   };
 
   return (

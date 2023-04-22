@@ -1,13 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import Navigation from './Navigation';
-import classes from './MainHeader.module.css';
+import Navigation from "./Navigation";
+import classes from "./MainHeader.module.css";
+// import AuthContext from "../context/auth-context";
 
-const MainHeader = (props) => {
+const MainHeader = () => {
+  // const ctx = React.useContext(AuthContext);
+
   return (
-    <header className={classes['main-header']}>
+    <header className={classes["main-header"]}>
       <h1>V App</h1>
-      <Navigation onLogout={props.onLogout} />
+      <Navigation />
     </header>
   );
 };
